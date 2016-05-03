@@ -23,11 +23,16 @@ import javax.swing.JProgressBar;
 public class Exercicio51 extends JFrame implements ActionListener {
 
 	JFrame janela = new JFrame();
+	JFrame janelaCadastro = new JFrame();
 	JButton button1 = new JButton("Cadastrar");
 	JButton button2 = new JButton("Atualizar");
 	JButton button3 = new JButton("Excluir");
 	JButton button4 = new JButton("Consultar");
 	JButton button5 = new JButton("Sair");
+	JProgressBar progresso = new JProgressBar();
+	
+	String[][] Clientes = new String[100][4];
+	int QuantidadeClientes = Clientes.length;
 
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == button1) {
@@ -50,15 +55,25 @@ public class Exercicio51 extends JFrame implements ActionListener {
 	// CLASSE CONSTRUTOR
 	public Exercicio51() {
 		// usarNinbus();
+		getContentPane().setBackground(Color.black);
+		getContentPane().setForeground(Color.white);
 		setResizable(false);
 		getContentPane().setLayout(null);
 
 		// Botoes
 		getContentPane().add(button1);
-		button2.setToolTipText("Atualizar ou editar os dados de um cliente");
+		button1.setBackground(Color.white);
+		button1.setForeground(Color.black);
 		getContentPane().add(button2);
+		button2.setBackground(Color.white);
+		button2.setForeground(Color.black);
+		button2.setToolTipText("Atualizar ou editar os dados de um cliente");
 		getContentPane().add(button3);
+		button3.setBackground(Color.white);
+		button3.setForeground(Color.black);
 		getContentPane().add(button4);
+		button4.setBackground(Color.white);
+		button4.setForeground(Color.black);
 		getContentPane().add(button5);
 		button1.addActionListener(this);
 		button2.addActionListener(this);
@@ -81,15 +96,16 @@ public class Exercicio51 extends JFrame implements ActionListener {
 		JLabel lblSccSistema = new JLabel("SCC - Sistema de Cadastro de Clientes");
 		lblSccSistema.setBounds(325, 12, 300, 24);
 		getContentPane().add(lblSccSistema);
-
-		JProgressBar progresso = new JProgressBar();
+		lblSccSistema.setForeground(Color.white);
+		
 		progresso.setToolTipText("Cadastros ja utilizados");
 		progresso.setStringPainted(true);
 		progresso.setBounds(193, 337, 382, 19);
 		getContentPane().add(progresso);
+		progresso.setStringPainted(true);
+		progresso.setForeground(Color.white);
 		
 
-		
 		setTitle("Cadastro de clientes");
 		setVisible(true);
 		setSize(900, 420);
@@ -117,11 +133,20 @@ public class Exercicio51 extends JFrame implements ActionListener {
 
 	// Funcoes
 	public void Cadastrar() {
-		JOptionPane.showInputDialog("Informe o nome a ser Cadastrado");
+		/**janelaCadastro.setLocationRelativeTo(null);
+		
+		janelaCadastro.setLocale(null);
+		janelaCadastro.setTitle("Tela de Cadastro");
+		janelaCadastro.setVisible(true);
+		janelaCadastro.setSize(300, 250);
+		janelaCadastro.setResizable(false);
+		*/
+		janelaCadastro.setDefaultCloseOperation(EXIT_ON_CLOSE);
 	}
 
 	public void Atualizar() {
-		JOptionPane.showMessageDialog(null, "Voce selecionou o botao para atualizacao");
+
+		JOptionPane.showInputDialog("Voce selecionou o botao para atualizacao");
 	}
 
 	public void Excluir() {
@@ -129,6 +154,7 @@ public class Exercicio51 extends JFrame implements ActionListener {
 	}
 
 	public void Consultar() {
+		
 		JOptionPane.showInputDialog("Informe o nome a ser consultado");
 
 	}
