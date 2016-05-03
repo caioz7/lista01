@@ -52,8 +52,8 @@ public class Exercicio51 extends JFrame implements ActionListener {
 		}
 	}
 
-	// CLASSE CONSTRUTOR
-	public Exercicio51() {
+	public Exercicio51() {	// CLASSE CONSTRUTOR
+		
 		// usarNinbus();
 		getContentPane().setBackground(Color.black);
 		getContentPane().setForeground(Color.white);
@@ -64,32 +64,39 @@ public class Exercicio51 extends JFrame implements ActionListener {
 		getContentPane().add(button1);
 		button1.setBackground(Color.white);
 		button1.setForeground(Color.black);
+		button1.setToolTipText("Cadastrar um novo cliente");
+		
 		getContentPane().add(button2);
 		button2.setBackground(Color.white);
 		button2.setForeground(Color.black);
 		button2.setToolTipText("Atualizar ou editar os dados de um cliente");
+		
 		getContentPane().add(button3);
 		button3.setBackground(Color.white);
 		button3.setForeground(Color.black);
+		button3.setToolTipText("Excluir cadastros");
+		
 		getContentPane().add(button4);
 		button4.setBackground(Color.white);
 		button4.setForeground(Color.black);
+		button4.setToolTipText("Consultar cadastros");
+		
 		getContentPane().add(button5);
+		button5.setBackground(Color.GRAY);
+		button5.setForeground(Color.WHITE);
+		button5.setToolTipText("Encerrar aplicativo");
+		
 		button1.addActionListener(this);
 		button2.addActionListener(this);
 		button3.addActionListener(this);
 		button4.addActionListener(this);
 		button5.addActionListener(this);
 
-		button1.setBounds(114, 66, 100, 35);
+		button1.setBounds(114, 66, 100, 25);
 		button1.setToolTipText("Opcao de cadastro.");
-		button2.setBounds(273, 66, 100, 35);
-		button3.setBounds(461, 66, 100, 35);
-		button4.setBounds(632, 66, 100, 35);
-		getBackground();
-		button5.setBackground(Color.GRAY);
-		getForeground();
-		button5.setForeground(Color.WHITE);
+		button2.setBounds(273, 66, 100, 25);
+		button3.setBounds(461, 66, 100, 25);
+		button4.setBounds(632, 66, 100, 25);
 		button5.setBounds(747, 322, 100, 35);
 
 		// Dados da Janela
@@ -100,7 +107,7 @@ public class Exercicio51 extends JFrame implements ActionListener {
 		
 		progresso.setToolTipText("Cadastros ja utilizados");
 		progresso.setStringPainted(true);
-		progresso.setBounds(193, 337, 382, 19);
+		progresso.setBounds(220, 337, 382, 19);
 		getContentPane().add(progresso);
 		progresso.setStringPainted(true);
 		progresso.setForeground(Color.white);
