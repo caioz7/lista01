@@ -12,13 +12,7 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
-import javax.swing.UIManager;
-import javax.swing.UIManager.LookAndFeelInfo;
-import javax.swing.UnsupportedLookAndFeelException;
-import javax.swing.event.AncestorListener;
 import javax.swing.JLabel;
-import java.awt.Panel;
-import javax.swing.JTextField;
 import javax.swing.JProgressBar;
 
 public class Exercicio51 extends JFrame implements ActionListener {
