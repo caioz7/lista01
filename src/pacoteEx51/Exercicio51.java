@@ -5,6 +5,7 @@
 package pacoteEx51;
 
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -30,6 +31,7 @@ public class Exercicio51 extends JFrame implements ActionListener {
 	JButton button4 = new JButton("Consultar");
 	JButton button5 = new JButton("Sair");
 	JProgressBar progresso = new JProgressBar();
+	Font fonteLabel = new Font("Serif",Font.BOLD,20);
 	
 	String[][] Clientes = new String[100][4];
 	int QuantidadeClientes = Clientes.length;
@@ -100,9 +102,10 @@ public class Exercicio51 extends JFrame implements ActionListener {
 		button5.setBounds(747, 322, 100, 35);
 
 		// Dados da Janela
-		JLabel lblSccSistema = new JLabel("SCC - Sistema de Cadastro de Clientes");
-		lblSccSistema.setBounds(325, 12, 300, 24);
+		JLabel lblSccSistema = new JLabel("SCC - SISTEMA DE CADASTRO DE CLIENTES");
+		lblSccSistema.setBounds(220, 12, 500, 24);
 		getContentPane().add(lblSccSistema);
+		lblSccSistema.setFont(fonteLabel);
 		lblSccSistema.setForeground(Color.white);
 		
 		progresso.setToolTipText("Cadastros ja utilizados");
