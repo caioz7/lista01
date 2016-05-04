@@ -12,13 +12,16 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 import javax.swing.JLabel;
 import javax.swing.JProgressBar;
+import javax.swing.JTextArea;
+import javax.swing.JTextField;
 
 public class Exercicio51 extends JFrame implements ActionListener {
 
 	JFrame janela = new JFrame();
-	JFrame janelaCadastro = new JFrame();
+	
 	JButton button1 = new JButton("Cadastrar");
 	JButton button2 = new JButton("Atualizar");
 	JButton button3 = new JButton("Excluir");
@@ -26,7 +29,6 @@ public class Exercicio51 extends JFrame implements ActionListener {
 	JButton button5 = new JButton("Sair");
 	JProgressBar progresso = new JProgressBar();
 	Font fonteLabel = new Font("Serif",Font.BOLD,20);
-	
 	String[][] Clientes = new String[100][4];
 	int QuantidadeClientes = Clientes.length;
 
@@ -61,6 +63,7 @@ public class Exercicio51 extends JFrame implements ActionListener {
 		button1.setBackground(Color.white);
 		button1.setForeground(Color.black);
 		button1.setToolTipText("Cadastrar um novo cliente");
+		
 		
 		getContentPane().add(button2);
 		button2.setBackground(Color.white);
@@ -109,6 +112,7 @@ public class Exercicio51 extends JFrame implements ActionListener {
 		progresso.setStringPainted(true);
 		progresso.setForeground(Color.white);
 		
+		
 
 		setTitle("Cadastro de clientes");
 		setVisible(true);
@@ -137,20 +141,33 @@ public class Exercicio51 extends JFrame implements ActionListener {
 
 	// Funcoes
 	public void Cadastrar() {
-		/**janelaCadastro.setLocationRelativeTo(null);
+		JPanel painelCadastro = new JPanel();
+		JLabel nome = new JLabel("Nome: ");
+		JTextField nomeEnt = new JTextField(30);
+		painelCadastro.add(nome);
+		painelCadastro.add(nomeEnt);
+		nomeEnt.setBounds(40, 5, 300, 18);
+	
+		System.out.println();
+		nome.setForeground(Color.black);
+		nome.setBounds(0, 8, 55, 10);
 		
-		janelaCadastro.setLocale(null);
-		janelaCadastro.setTitle("Tela de Cadastro");
-		janelaCadastro.setVisible(true);
-		janelaCadastro.setSize(300, 250);
-		janelaCadastro.setResizable(false);
-		*/
-		janelaCadastro.setDefaultCloseOperation(EXIT_ON_CLOSE);
+		
+		getContentPane().add(painelCadastro);
+
+		painelCadastro.setForeground(Color.black);
+		painelCadastro.setBackground(Color.white);
+		painelCadastro.setBounds(159, 103, 549, 215);
+		
 	}
 
 	public void Atualizar() {
+		JPanel painelAualizar = new JPanel();
 
-		JOptionPane.showInputDialog("Voce selecionou o botao para atualizacao");
+		getContentPane().add(painelAualizar);
+		painelAualizar.setBounds(159, 103, 549, 215);
+		painelAualizar.setForeground(Color.WHITE);
+		painelAualizar.setBackground(Color.GRAY);
 	}
 
 	public void Excluir() {
@@ -158,8 +175,14 @@ public class Exercicio51 extends JFrame implements ActionListener {
 	}
 
 	public void Consultar() {
+		JPanel painelConsulta = new JPanel();
 		
-		JOptionPane.showInputDialog("Informe o nome a ser consultado");
+		getContentPane().add(painelConsulta);
+		
+		painelConsulta.setBounds(159, 103, 549, 215);
+		painelConsulta.setForeground(Color.WHITE);
+		painelConsulta.setBackground(Color.GRAY);
+		
 
 	}
 
