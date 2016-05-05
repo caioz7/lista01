@@ -21,12 +21,14 @@ import javax.swing.JTextField;
 public class Exercicio51 extends JFrame implements ActionListener {
 
 	JFrame janela = new JFrame();
-	
+	Color cor01 = new Color(200,200,200);
+	Color corSalvar = new Color(34,1,34);
 	JButton button1 = new JButton("Cadastrar");
 	JButton button2 = new JButton("Atualizar");
 	JButton button3 = new JButton("Excluir");
 	JButton button4 = new JButton("Consultar");
 	JButton button5 = new JButton("Sair");
+	JButton buttonSalvar = new JButton("Salvar");
 	JProgressBar progresso = new JProgressBar();
 	Font fonteLabel = new Font("Serif",Font.BOLD,20);
 	String[][] Clientes = new String[100][4];
@@ -48,40 +50,43 @@ public class Exercicio51 extends JFrame implements ActionListener {
 		if (e.getSource() == button5) {
 			Sair();
 		}
+		if(e.getSource() == buttonSalvar){
+			Salvar();
+		}
 	}
 
 	public Exercicio51() {	// CLASSE CONSTRUTOR
 		
 		// usarNinbus();
-		getContentPane().setBackground(Color.black);
-		getContentPane().setForeground(Color.white);
+		getContentPane().setBackground(Color.white);
+		getContentPane().setForeground(Color.black);
 		setResizable(false);
 		getContentPane().setLayout(null);
 
 		// Botoes
 		getContentPane().add(button1);
-		button1.setBackground(Color.white);
-		button1.setForeground(Color.black);
+		button1.setBackground(Color.gray);
+		button1.setForeground(Color.white);
 		button1.setToolTipText("Cadastrar um novo cliente");
 		
 		
 		getContentPane().add(button2);
-		button2.setBackground(Color.white);
-		button2.setForeground(Color.black);
+		button2.setBackground(Color.gray);
+		button2.setForeground(Color.white);
 		button2.setToolTipText("Atualizar ou editar os dados de um cliente");
 		
 		getContentPane().add(button3);
-		button3.setBackground(Color.white);
-		button3.setForeground(Color.black);
+		button3.setBackground(Color.gray);
+		button3.setForeground(Color.white);
 		button3.setToolTipText("Excluir cadastros");
 		
 		getContentPane().add(button4);
-		button4.setBackground(Color.white);
-		button4.setForeground(Color.black);
+		button4.setBackground(Color.gray);
+		button4.setForeground(Color.white);
 		button4.setToolTipText("Consultar cadastros");
 		
 		getContentPane().add(button5);
-		button5.setBackground(Color.GRAY);
+		button5.setBackground(cor01);
 		button5.setForeground(Color.WHITE);
 		button5.setToolTipText("Encerrar aplicativo");
 		
@@ -103,7 +108,7 @@ public class Exercicio51 extends JFrame implements ActionListener {
 		lblSccSistema.setBounds(220, 12, 500, 24);
 		getContentPane().add(lblSccSistema);
 		lblSccSistema.setFont(fonteLabel);
-		lblSccSistema.setForeground(Color.white);
+		lblSccSistema.setForeground(Color.black);
 		
 		progresso.setToolTipText("Cadastros ja utilizados");
 		progresso.setStringPainted(true);
@@ -141,23 +146,45 @@ public class Exercicio51 extends JFrame implements ActionListener {
 
 	// Funcoes
 	public void Cadastrar() {
+		
 		JPanel painelCadastro = new JPanel();
 		JLabel nome = new JLabel("Nome: ");
+		JLabel cpf = new JLabel("CPF: ");
+		JLabel cidade = new JLabel("Cidade: ");
+		JLabel estado = new JLabel("Estado: ");
 		JTextField nomeEnt = new JTextField(30);
+		JTextField cpfEnt = new JTextField(11);
+		JTextField cidadeEnt = new JTextField(30);
+		JTextField estadoEnt = new JTextField(2);
+		
 		painelCadastro.add(nome);
+		nome.setBounds(2, 8, 55, 10);	
+		painelCadastro.add(cpf);
+		cpf.setBounds(2, 58, 30, 10);
+		painelCadastro.add(cidade);
+		cidade.setBounds(2, 108, 60, 10);
+		painelCadastro.add(estado);
+		estado.setBounds(2,158,50,10);
+		
 		painelCadastro.add(nomeEnt);
-		nomeEnt.setBounds(40, 5, 300, 18);
+		nomeEnt.setBounds(48, 5, 400, 20);
+		painelCadastro.add(cpfEnt);
+		cpfEnt.setBounds(48, 55, 200, 20);
+		painelCadastro.add(cidadeEnt);
+		cidadeEnt.setBounds(48, 105, 250, 20);
+		painelCadastro.add(estadoEnt);
+		estadoEnt.setBounds(48, 155, 60, 20);
 	
-		System.out.println();
-		nome.setForeground(Color.black);
-		nome.setBounds(0, 8, 55, 10);
-		
-		
 		getContentPane().add(painelCadastro);
-
-		painelCadastro.setForeground(Color.black);
-		painelCadastro.setBackground(Color.white);
+		painelCadastro.setForeground(Color.white);
+		painelCadastro.setBackground(cor01);
 		painelCadastro.setBounds(159, 103, 549, 215);
+		
+		painelCadastro.add(buttonSalvar);
+		buttonSalvar.setBounds(430,180,80,20);
+		buttonSalvar.setBackground(corSalvar);
+		buttonSalvar.setForeground(Color.white);
+		buttonSalvar.addActionListener(this);
 		
 	}
 
@@ -167,7 +194,7 @@ public class Exercicio51 extends JFrame implements ActionListener {
 		getContentPane().add(painelAualizar);
 		painelAualizar.setBounds(159, 103, 549, 215);
 		painelAualizar.setForeground(Color.WHITE);
-		painelAualizar.setBackground(Color.GRAY);
+		painelAualizar.setBackground(cor01);
 	}
 
 	public void Excluir() {
@@ -181,13 +208,17 @@ public class Exercicio51 extends JFrame implements ActionListener {
 		
 		painelConsulta.setBounds(159, 103, 549, 215);
 		painelConsulta.setForeground(Color.WHITE);
-		painelConsulta.setBackground(Color.GRAY);
+		painelConsulta.setBackground(cor01);
 		
-
 	}
 
 	public void Sair() {
-		JOptionPane.showMessageDialog(null, "Saindo");
+		//JOptionPane.showMessageDialog(null, "Saindo");
 		System.exit(0);
 	}
+	
+	public void Salvar(){
+		
+	}
+	
 }
