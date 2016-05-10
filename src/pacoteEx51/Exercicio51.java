@@ -6,6 +6,7 @@ package pacoteEx51;
 
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -32,8 +33,13 @@ public class Exercicio51 extends JFrame implements ActionListener {
 	JProgressBar progresso = new JProgressBar();
 	Font fonteLabel = new Font("Serif",Font.BOLD,20);
 	String[][] Clientes = new String[100][4];
-	int QuantidadeClientes = Clientes.length;
+	JTextField nomeEnt = new JTextField(30);
+	JTextField cpfEnt = new JTextField(11);
+	JTextField cidadeEnt = new JTextField(30);
+	JTextField estadoEnt = new JTextField(2);
+	int tamanhoClientes;
 
+	
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == button1) {
 			Cadastrar();
@@ -51,12 +57,13 @@ public class Exercicio51 extends JFrame implements ActionListener {
 			Sair();
 		}
 		if(e.getSource() == buttonSalvar){
-			Salvar();
+			Salvar(nomeEnt,cpfEnt,cidadeEnt,estadoEnt);
+			Cadastrar();
 		}
 	}
 
 	public Exercicio51() {	// CLASSE CONSTRUTOR
-		
+		//setLayout(new GridLayout(10,10));
 		// usarNinbus();
 		getContentPane().setBackground(Color.white);
 		getContentPane().setForeground(Color.black);
@@ -152,10 +159,6 @@ public class Exercicio51 extends JFrame implements ActionListener {
 		JLabel cpf = new JLabel("CPF: ");
 		JLabel cidade = new JLabel("Cidade: ");
 		JLabel estado = new JLabel("Estado: ");
-		JTextField nomeEnt = new JTextField(30);
-		JTextField cpfEnt = new JTextField(11);
-		JTextField cidadeEnt = new JTextField(30);
-		JTextField estadoEnt = new JTextField(2);
 		
 		painelCadastro.add(nome);
 		nome.setBounds(2, 8, 55, 10);	
@@ -217,8 +220,26 @@ public class Exercicio51 extends JFrame implements ActionListener {
 		System.exit(0);
 	}
 	
-	public void Salvar(){
+	public void Salvar(JTextField nome, JTextField cpf,JTextField cidade, JTextField estado){
+		for(int i = 0; i< 3; i++){
+			tamanhoClientes = Clientes.length - i;
+			Clientes[i][0] = nome.getText();
+			Clientes[i][1] = cpf.getText();
+			Clientes[i][2] = cidade.getText();
+			Clientes[i][3] = estado.getText();
+			Cadastrar();
+		}
+		Imprimir();
+		System.exit(0);
 		
+	}
+	public void Imprimir(){
+		for(int i = 0; i< tamanhoClientes; i++){
+		for (int j = 0; j<4; j++){
+			System.out.println(Clientes[i][j]);
+		}
+		
+		}
 	}
 	
 }
