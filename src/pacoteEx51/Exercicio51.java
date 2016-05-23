@@ -6,21 +6,20 @@ package pacoteEx51;
 
 import java.awt.Color;
 import java.awt.Font;
-import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JLabel;
 import javax.swing.JProgressBar;
-import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
 public class Exercicio51 extends JFrame implements ActionListener {
 
+	private static final long serialVersionUID = 1L;
 	JFrame janela = new JFrame();
 	Color cor01 = new Color(200,200,200);
 	Color corSalvar = new Color(34,1,34);
@@ -32,13 +31,18 @@ public class Exercicio51 extends JFrame implements ActionListener {
 	JButton buttonSalvar = new JButton("Salvar");
 	JProgressBar progresso = new JProgressBar();
 	Font fonteLabel = new Font("Serif",Font.BOLD,20);
-	String[][] Clientes = new String[100][4];
+	JPanel painelCadastro = new JPanel();
+	JLabel nome = new JLabel("Nome: ");
+	JLabel cpf = new JLabel("CPF: ");
+	JLabel cidade = new JLabel("Cidade: ");
+	JLabel estado = new JLabel("Estado: ");
 	JTextField nomeEnt = new JTextField(30);
 	JTextField cpfEnt = new JTextField(11);
 	JTextField cidadeEnt = new JTextField(30);
 	JTextField estadoEnt = new JTextField(2);
-	int tamanhoClientes;
-
+	String[][] clientes = new String[100][4];
+	int codCliente = 0;
+	JLabel codigo = new JLabel("Codigo: " + codCliente);
 	
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == button1) {
@@ -57,13 +61,13 @@ public class Exercicio51 extends JFrame implements ActionListener {
 			Sair();
 		}
 		if(e.getSource() == buttonSalvar){
-			Salvar(nomeEnt,cpfEnt,cidadeEnt,estadoEnt);
-			Cadastrar();
+			codCliente++;
+			Salvar();
 		}
 	}
 
 	public Exercicio51() {	// CLASSE CONSTRUTOR
-		//setLayout(new GridLayout(10,10));
+
 		// usarNinbus();
 		getContentPane().setBackground(Color.white);
 		getContentPane().setForeground(Color.black);
@@ -75,28 +79,28 @@ public class Exercicio51 extends JFrame implements ActionListener {
 		button1.setBackground(Color.gray);
 		button1.setForeground(Color.white);
 		button1.setToolTipText("Cadastrar um novo cliente");
-		
-		
+
+
 		getContentPane().add(button2);
 		button2.setBackground(Color.gray);
 		button2.setForeground(Color.white);
 		button2.setToolTipText("Atualizar ou editar os dados de um cliente");
-		
+
 		getContentPane().add(button3);
 		button3.setBackground(Color.gray);
 		button3.setForeground(Color.white);
 		button3.setToolTipText("Excluir cadastros");
-		
+
 		getContentPane().add(button4);
 		button4.setBackground(Color.gray);
 		button4.setForeground(Color.white);
 		button4.setToolTipText("Consultar cadastros");
-		
+
 		getContentPane().add(button5);
 		button5.setBackground(cor01);
 		button5.setForeground(Color.WHITE);
 		button5.setToolTipText("Encerrar aplicativo");
-		
+
 		button1.addActionListener(this);
 		button2.addActionListener(this);
 		button3.addActionListener(this);
@@ -116,15 +120,14 @@ public class Exercicio51 extends JFrame implements ActionListener {
 		getContentPane().add(lblSccSistema);
 		lblSccSistema.setFont(fonteLabel);
 		lblSccSistema.setForeground(Color.black);
-		
+
 		progresso.setToolTipText("Cadastros ja utilizados");
 		progresso.setStringPainted(true);
 		progresso.setBounds(220, 337, 382, 19);
 		getContentPane().add(progresso);
-		progresso.setStringPainted(true);
+		
 		progresso.setForeground(Color.white);
-		
-		
+
 
 		setTitle("Cadastro de clientes");
 		setVisible(true);
@@ -153,13 +156,12 @@ public class Exercicio51 extends JFrame implements ActionListener {
 
 	// Funcoes
 	public void Cadastrar() {
-		
-		JPanel painelCadastro = new JPanel();
-		JLabel nome = new JLabel("Nome: ");
-		JLabel cpf = new JLabel("CPF: ");
-		JLabel cidade = new JLabel("Cidade: ");
-		JLabel estado = new JLabel("Estado: ");
-		
+
+		getContentPane().add(painelCadastro);
+		painelCadastro.setForeground(Color.white);
+		painelCadastro.setBackground(cor01);
+		painelCadastro.setBounds(159, 103, 549, 215);
+
 		painelCadastro.add(nome);
 		nome.setBounds(2, 8, 55, 10);	
 		painelCadastro.add(cpf);
@@ -168,27 +170,50 @@ public class Exercicio51 extends JFrame implements ActionListener {
 		cidade.setBounds(2, 108, 60, 10);
 		painelCadastro.add(estado);
 		estado.setBounds(2,158,50,10);
-		
+		painelCadastro.add(codigo);
+		codigo.setBounds(2,190, 140, 20);
+		//textfields
 		painelCadastro.add(nomeEnt);
 		nomeEnt.setBounds(48, 5, 400, 20);
+		nomeEnt.setText(null);
 		painelCadastro.add(cpfEnt);
 		cpfEnt.setBounds(48, 55, 200, 20);
+		cpfEnt.setText(null);
 		painelCadastro.add(cidadeEnt);
 		cidadeEnt.setBounds(48, 105, 250, 20);
+		cidadeEnt.setText(null);
 		painelCadastro.add(estadoEnt);
 		estadoEnt.setBounds(48, 155, 60, 20);
-	
-		getContentPane().add(painelCadastro);
-		painelCadastro.setForeground(Color.white);
-		painelCadastro.setBackground(cor01);
-		painelCadastro.setBounds(159, 103, 549, 215);
-		
+		estadoEnt.setText(null);
+
 		painelCadastro.add(buttonSalvar);
-		buttonSalvar.setBounds(430,180,80,20);
+		buttonSalvar.setBounds(430,180,80,30);
 		buttonSalvar.setBackground(corSalvar);
 		buttonSalvar.setForeground(Color.white);
 		buttonSalvar.addActionListener(this);
-		
+
+	}
+	public void Salvar(){
+		progresso.setValue(codCliente);
+		boolean laco = true;
+
+		while(laco){
+			if(codCliente >= 100){
+				JOptionPane.showMessageDialog(null, "Limite atingido!");
+				laco = false;
+			}else{
+
+				clientes[codCliente][0] = nomeEnt.getText();
+				clientes[codCliente][1] = cpfEnt.getText();
+				clientes[codCliente][2] = cidadeEnt.getText();
+				clientes[codCliente][3] = estadoEnt.getText();
+				System.out.println("Codigo: " + codCliente + "\nNome " +clientes[codCliente][0] + "\nCpf " + clientes[codCliente][1] + "\nCidade " + clientes[codCliente][2] + " Estado: " + clientes[codCliente][3]);
+				laco = false;
+			}		
+		}
+		JOptionPane.showMessageDialog(button1, "Salvo");
+
+
 	}
 
 	public void Atualizar() {
@@ -206,40 +231,18 @@ public class Exercicio51 extends JFrame implements ActionListener {
 
 	public void Consultar() {
 		JPanel painelConsulta = new JPanel();
-		
+
 		getContentPane().add(painelConsulta);
-		
+
 		painelConsulta.setBounds(159, 103, 549, 215);
 		painelConsulta.setForeground(Color.WHITE);
 		painelConsulta.setBackground(cor01);
-		
 	}
 
 	public void Sair() {
 		//JOptionPane.showMessageDialog(null, "Saindo");
 		System.exit(0);
 	}
-	
-	public void Salvar(JTextField nome, JTextField cpf,JTextField cidade, JTextField estado){
-		for(int i = 0; i< 3; i++){
-			tamanhoClientes = Clientes.length - i;
-			Clientes[i][0] = nome.getText();
-			Clientes[i][1] = cpf.getText();
-			Clientes[i][2] = cidade.getText();
-			Clientes[i][3] = estado.getText();
-			Cadastrar();
-		}
-		Imprimir();
-		System.exit(0);
-		
-	}
-	public void Imprimir(){
-		for(int i = 0; i< tamanhoClientes; i++){
-		for (int j = 0; j<4; j++){
-			System.out.println(Clientes[i][j]);
-		}
-		
-		}
-	}
-	
+
+
 }
