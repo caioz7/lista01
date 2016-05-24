@@ -20,18 +20,22 @@ import javax.swing.JTextField;
 public class Exercicio51 extends JFrame implements ActionListener {
 
 	private static final long serialVersionUID = 1L;
+	int codCliente = 0;
 	JFrame janela = new JFrame();
-	Color cor01 = new Color(200,200,200);
-	Color corSalvar = new Color(34,1,34);
+	Color cor01 = new Color(200, 200, 200);
+	Color corSalvar = new Color(34, 1, 34);
 	JButton button1 = new JButton("Cadastrar");
 	JButton button2 = new JButton("Atualizar");
 	JButton button3 = new JButton("Excluir");
 	JButton button4 = new JButton("Consultar");
 	JButton button5 = new JButton("Sair");
+
 	JButton buttonSalvar = new JButton("Salvar");
 	JProgressBar progresso = new JProgressBar();
-	Font fonteLabel = new Font("Serif",Font.BOLD,20);
+	Font fonteLabel = new Font("Serif", Font.BOLD, 20);
 	JPanel painelCadastro = new JPanel();
+	JPanel painelAualizar = new JPanel();
+	JPanel painelConsulta = new JPanel();
 	JLabel nome = new JLabel("Nome: ");
 	JLabel cpf = new JLabel("CPF: ");
 	JLabel cidade = new JLabel("Cidade: ");
@@ -41,9 +45,7 @@ public class Exercicio51 extends JFrame implements ActionListener {
 	JTextField cidadeEnt = new JTextField(30);
 	JTextField estadoEnt = new JTextField(2);
 	String[][] clientes = new String[100][4];
-	int codCliente = 0;
-	JLabel codigo = new JLabel("Codigo: " + codCliente);
-	
+
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == button1) {
 			Cadastrar();
@@ -60,13 +62,13 @@ public class Exercicio51 extends JFrame implements ActionListener {
 		if (e.getSource() == button5) {
 			Sair();
 		}
-		if(e.getSource() == buttonSalvar){
-			codCliente++;
+		if (e.getSource() == buttonSalvar) {
 			Salvar();
+			codCliente++;
 		}
 	}
 
-	public Exercicio51() {	// CLASSE CONSTRUTOR
+	public Exercicio51() { // CLASSE CONSTRUTOR
 
 		// usarNinbus();
 		getContentPane().setBackground(Color.white);
@@ -79,7 +81,6 @@ public class Exercicio51 extends JFrame implements ActionListener {
 		button1.setBackground(Color.gray);
 		button1.setForeground(Color.white);
 		button1.setToolTipText("Cadastrar um novo cliente");
-
 
 		getContentPane().add(button2);
 		button2.setBackground(Color.gray);
@@ -123,11 +124,10 @@ public class Exercicio51 extends JFrame implements ActionListener {
 
 		progresso.setToolTipText("Cadastros ja utilizados");
 		progresso.setStringPainted(true);
+		progresso.setBackground(Color.white);
+		progresso.setForeground(Color.blue);
 		progresso.setBounds(220, 337, 382, 19);
 		getContentPane().add(progresso);
-		
-		progresso.setForeground(Color.white);
-
 
 		setTitle("Cadastro de clientes");
 		setVisible(true);
@@ -156,23 +156,20 @@ public class Exercicio51 extends JFrame implements ActionListener {
 
 	// Funcoes
 	public void Cadastrar() {
-
 		getContentPane().add(painelCadastro);
 		painelCadastro.setForeground(Color.white);
 		painelCadastro.setBackground(cor01);
 		painelCadastro.setBounds(159, 103, 549, 215);
 
 		painelCadastro.add(nome);
-		nome.setBounds(2, 8, 55, 10);	
+		nome.setBounds(2, 8, 55, 10);
 		painelCadastro.add(cpf);
 		cpf.setBounds(2, 58, 30, 10);
 		painelCadastro.add(cidade);
 		cidade.setBounds(2, 108, 60, 10);
 		painelCadastro.add(estado);
-		estado.setBounds(2,158,50,10);
-		painelCadastro.add(codigo);
-		codigo.setBounds(2,190, 140, 20);
-		//textfields
+		estado.setBounds(2, 158, 50, 10);
+		// textfields
 		painelCadastro.add(nomeEnt);
 		nomeEnt.setBounds(48, 5, 400, 20);
 		nomeEnt.setText(null);
@@ -187,62 +184,146 @@ public class Exercicio51 extends JFrame implements ActionListener {
 		estadoEnt.setText(null);
 
 		painelCadastro.add(buttonSalvar);
-		buttonSalvar.setBounds(430,180,80,30);
+		buttonSalvar.setBounds(430, 180, 80, 30);
 		buttonSalvar.setBackground(corSalvar);
 		buttonSalvar.setForeground(Color.white);
 		buttonSalvar.addActionListener(this);
-
+		int atualCod = codCliente;
+		JLabel codigo = new JLabel("Codigo: " + atualCod);
+		painelCadastro.add(codigo);
+		codigo.setBounds(2, 190, 140, 20);
 	}
-	public void Salvar(){
-		progresso.setValue(codCliente);
+
+	public void Salvar() {
+		progresso.setValue(codCliente + 1);
 		boolean laco = true;
 
-		while(laco){
-			if(codCliente >= 100){
+		while (laco) {
+			if (codCliente >= 100) {
 				JOptionPane.showMessageDialog(null, "Limite atingido!");
 				laco = false;
-			}else{
+			} else {
 
 				clientes[codCliente][0] = nomeEnt.getText();
 				clientes[codCliente][1] = cpfEnt.getText();
 				clientes[codCliente][2] = cidadeEnt.getText();
 				clientes[codCliente][3] = estadoEnt.getText();
-				System.out.println("Codigo: " + codCliente + "\nNome " +clientes[codCliente][0] + "\nCpf " + clientes[codCliente][1] + "\nCidade " + clientes[codCliente][2] + " Estado: " + clientes[codCliente][3]);
+				System.out.println("Codigo: " + codCliente + "\nNome " + clientes[codCliente][0] + "\nCpf "
+						+ clientes[codCliente][1] + "\nCidade " + clientes[codCliente][2] + "\n Estado: "
+						+ clientes[codCliente][3]);
 				laco = false;
-			}		
+				JOptionPane.showMessageDialog(button1, "Salvo com sucesso!\nCodigo: " + codCliente);
+			}
 		}
-		JOptionPane.showMessageDialog(button1, "Salvo");
-
-
+		nomeEnt.setText(null);
+		cpfEnt.setText(null);
+		cidadeEnt.setText(null);
+		estadoEnt.setText(null);
 	}
 
 	public void Atualizar() {
-		JPanel painelAualizar = new JPanel();
 
 		getContentPane().add(painelAualizar);
 		painelAualizar.setBounds(159, 103, 549, 215);
 		painelAualizar.setForeground(Color.WHITE);
 		painelAualizar.setBackground(cor01);
+		
+		int codConsulta = Integer.parseInt(JOptionPane.showInputDialog("Insira o codigo do cliente a ser atualizado."));
+		int codCliente = codConsulta;
+		painelAualizar.add(nome);
+		nome.setBounds(2, 8, 55, 10);
+		painelAualizar.add(cpf);
+		cpf.setBounds(2, 58, 30, 10);
+		painelAualizar.add(cidade);
+		cidade.setBounds(2, 108, 60, 10);
+		painelAualizar.add(estado);
+		estado.setBounds(2, 158, 50, 10);
+		// textfields
+		painelAualizar.add(nomeEnt);
+		nomeEnt.setBounds(48, 5, 400, 20);
+		nomeEnt.setText(clientes[codConsulta][0]);
+		painelAualizar.add(cpfEnt);
+		cpfEnt.setBounds(48, 55, 200, 20);
+		cpfEnt.setText(clientes[codConsulta][1]);
+		painelAualizar.add(cidadeEnt);
+		cidadeEnt.setBounds(48, 105, 250, 20);
+		cidadeEnt.setText(clientes[codConsulta][2]);
+		painelAualizar.add(estadoEnt);
+		estadoEnt.setBounds(48, 155, 60, 20);
+		estadoEnt.setText(clientes[codConsulta][3]);
+
+		painelAualizar.add(buttonSalvar);
+		buttonSalvar.setBounds(430, 180, 80, 30);
+		buttonSalvar.setBackground(corSalvar);
+		buttonSalvar.setForeground(Color.white);
+		buttonSalvar.addActionListener(this);
+		int atualCod = codCliente;
+		JLabel codigo = new JLabel("Codigo: " + atualCod);
+		painelAualizar.add(codigo);
+		codigo.setBounds(2, 190, 140, 20);
 	}
+
+	public void atualizaDados(int codigoC){
+		clientes[codigoC][0] = nomeEnt.getText();
+		clientes[codigoC][1] = cpfEnt.getText();
+		clientes[codigoC][2] = cidadeEnt.getText();
+		clientes[codigoC][3] = estadoEnt.getText();
+	} 
+	
 
 	public void Excluir() {
 		JOptionPane.showMessageDialog(null, "Voce selecionou o botao para exclusao");
 	}
 
 	public void Consultar() {
-		JPanel painelConsulta = new JPanel();
+		/**
+		 * Aqui vai ser inserido um joptionPane para solicitar o codigo a
+		 * consultar, motrar os dados atraves de JLABEL, remover o
+		 * desnecessario.
+		 */
 
 		getContentPane().add(painelConsulta);
 
 		painelConsulta.setBounds(159, 103, 549, 215);
 		painelConsulta.setForeground(Color.WHITE);
 		painelConsulta.setBackground(cor01);
+		JOptionPane.showMessageDialog(null, "Painel de Consulta");
+//		painelConsulta.add(nome);
+//		nome.setBounds(2, 8, 55, 10);
+//		painelConsulta.add(cpf);
+//		cpf.setBounds(2, 58, 30, 10);
+//		painelConsulta.add(cidade);
+//		cidade.setBounds(2, 108, 60, 10);
+//		painelConsulta.add(estado);
+//		estado.setBounds(2, 158, 50, 10);
+//		// textfields
+//		painelConsulta.add(nomeEnt);
+//		nomeEnt.setBounds(48, 5, 400, 20);
+//		nomeEnt.setText(null);
+//		painelConsulta.add(cpfEnt);
+//		cpfEnt.setBounds(48, 55, 200, 20);
+//		cpfEnt.setText(null);
+//		painelConsulta.add(cidadeEnt);
+//		cidadeEnt.setBounds(48, 105, 250, 20);
+//		cidadeEnt.setText(null);
+//		painelConsulta.add(estadoEnt);
+//		estadoEnt.setBounds(48, 155, 60, 20);
+//		estadoEnt.setText(null);
+//
+//		painelConsulta.add(buttonSalvar);
+//		buttonSalvar.setBounds(430, 180, 80, 30);
+//		buttonSalvar.setBackground(corSalvar);
+//		buttonSalvar.setForeground(Color.white);
+//		buttonSalvar.addActionListener(this);
+//		int atualCod = codCliente;
+//		JLabel codigo = new JLabel("Codigo: " + atualCod);
+//		painelConsulta.add(codigo);
+//		codigo.setBounds(2, 190, 140, 20);
 	}
 
 	public void Sair() {
-		//JOptionPane.showMessageDialog(null, "Saindo");
+		// JOptionPane.showMessageDialog(null, "Saindo");
 		System.exit(0);
 	}
-
 
 }
