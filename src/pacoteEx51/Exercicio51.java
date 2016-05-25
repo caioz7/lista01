@@ -17,6 +17,8 @@ import javax.swing.JPanel;
 import javax.swing.JProgressBar;
 import javax.swing.JTextField;
 
+import sun.awt.RepaintArea;
+
 public class Exercicio51 extends JFrame implements ActionListener {
 
 	private static final long serialVersionUID = 1L;
@@ -160,6 +162,7 @@ public class Exercicio51 extends JFrame implements ActionListener {
 		painelCadastro.setForeground(Color.white);
 		painelCadastro.setBackground(cor01);
 		painelCadastro.setBounds(159, 103, 549, 215);
+		repaint();
 
 		painelCadastro.add(nome);
 		nome.setBounds(2, 8, 55, 10);
@@ -223,6 +226,7 @@ public class Exercicio51 extends JFrame implements ActionListener {
 
 	public void Atualizar() {
 
+		repaint();
 		getContentPane().add(painelAualizar);
 		painelAualizar.setBounds(159, 103, 549, 215);
 		painelAualizar.setForeground(Color.WHITE);
