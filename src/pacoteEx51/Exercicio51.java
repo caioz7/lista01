@@ -26,7 +26,7 @@ public class Exercicio51 extends JFrame implements ActionListener {
 
 	private static final long serialVersionUID = 1L;
 	int codCliente = 0;
-	int codConsulta = 0;
+	int codConsulta = codCliente;
 	JFrame janela = new JFrame();
 	Color cor01 = new Color(200, 200, 200);
 	Color corSalvar = new Color(34, 1, 34);
@@ -52,7 +52,7 @@ public class Exercicio51 extends JFrame implements ActionListener {
 	JTextField cidadeEnt = new JTextField(30);
 	JTextField estadoEnt = new JTextField(2);
 	String[][] clientes = new String[100][4];
-
+	String[][] clientesReserva = new String[100][4];
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == button1) {
 			
@@ -281,10 +281,16 @@ public class Exercicio51 extends JFrame implements ActionListener {
 
 	public void atualizaDados(int codigoC){
 		
-		clientes[codigoC][0] = nomeEnt.getText();
-		clientes[codigoC][1] = cpfEnt.getText();
-		clientes[codigoC][2] = cidadeEnt.getText();
-		clientes[codigoC][3] = estadoEnt.getText();
+		clientesReserva[codigoC][0] = nomeEnt.getText();
+		clientesReserva[codigoC][1] = cpfEnt.getText();
+		clientesReserva[codigoC][2] = cidadeEnt.getText();
+		clientesReserva[codigoC][3] = estadoEnt.getText();
+		//Aqui fazer o replace para o vetor principal
+		String.format(clientesReserva[codigoC][0],clientes[codigoC][0]);
+		String.format(clientesReserva[codigoC][0],clientes[codigoC][1]);
+		String.format(clientesReserva[codigoC][0],clientes[codigoC][2]);
+		String.format(clientesReserva[codigoC][0],clientes[codigoC][3]);
+		
 		JOptionPane.showMessageDialog(null, "Atualizado com sucesso!\nCodigo: " + codigoC);
 		System.out.println("Codigo: " + codCliente + "\nNome " + clientes[codCliente][0] + "\nCpf "
 				+ clientes[codCliente][1] + "\nCidade " + clientes[codCliente][2] + "\n Estado: "
