@@ -80,38 +80,28 @@ public class Exercicio51 extends JFrame implements ActionListener {
 
 	public Exercicio51() { // CLASSE CONSTRUTOR
 
-		// usarNinbus();
-		
-		
-		//getContentPane().setBackground(Color.white);
-		//getContentPane().setForeground(Color.black);
 		setResizable(false);
 		getContentPane().setLayout(null);
 
 		// Botoes
 		getContentPane().add(button1);
-		//button1.setBackground(Color.gray);
-		//button1.setForeground(Color.white);
+
 		button1.setToolTipText("Cadastrar um novo cliente");
 
 		getContentPane().add(button2);
-		//button2.setBackground(Color.gray);
-		//button2.setForeground(Color.white);
+
 		button2.setToolTipText("Atualizar ou editar os dados de um cliente");
 
 		getContentPane().add(button3);
-		//button3.setBackground(Color.gray);
-		//button3.setForeground(Color.white);
+
 		button3.setToolTipText("Excluir cadastros");
 
 		getContentPane().add(button4);
-		//button4.setBackground(Color.gray);
-		//button4.setForeground(Color.white);
+
 		button4.setToolTipText("Consultar cadastros");
 
 		getContentPane().add(button5);
-		//button5.setBackground(cor01);
-		//button5.setForeground(Color.WHITE);
+
 		button5.setToolTipText("Encerrar aplicativo");
 
 		button1.addActionListener(this);
@@ -132,12 +122,9 @@ public class Exercicio51 extends JFrame implements ActionListener {
 		lblSccSistema.setBounds(220, 12, 500, 24);
 		getContentPane().add(lblSccSistema);
 		lblSccSistema.setFont(fonteLabel);
-		//lblSccSistema.setForeground(Color.black);
 
 		progresso.setToolTipText("Cadastros ja utilizados");
 		progresso.setStringPainted(true);
-		//progresso.setBackground(Color.white);
-		//progresso.setForeground(Color.blue);
 		progresso.setBounds(220, 337, 382, 19);
 		getContentPane().add(progresso);
 
@@ -169,8 +156,6 @@ public class Exercicio51 extends JFrame implements ActionListener {
 
 		painelAtualizar.repaint();
 		getContentPane().add(painelCadastro);
-		//painelCadastro.setForeground(Color.white);
-		//painelCadastro.setBackground(cor01);
 		painelCadastro.setBounds(159, 103, 549, 215);
 
 		painelCadastro.add(nome);
@@ -196,8 +181,6 @@ public class Exercicio51 extends JFrame implements ActionListener {
 		estadoEnt.setText(null);
 		painelCadastro.add(buttonSalvar);
 		buttonSalvar.setBounds(430, 180, 80, 30);
-		//buttonSalvar.setBackground(corSalvar);
-		//buttonSalvar.setForeground(Color.white);
 		buttonSalvar.addActionListener(this);
 		//int atualCod = codCliente;
 		JLabel codigo = new JLabel("Codigo: " + codCliente);
@@ -209,12 +192,9 @@ public class Exercicio51 extends JFrame implements ActionListener {
 	public void Salvar() {
 	
 		progresso.setValue(codCliente + 1);
-		//boolean laco = true;
-
-		//while (laco) {
+		
 			if (codCliente >= 100) {
 				JOptionPane.showMessageDialog(null, "Limite atingido!");
-				//laco = false;
 			} else {
 
 				clientes[codCliente][0] = nomeEnt.getText();
@@ -225,11 +205,8 @@ public class Exercicio51 extends JFrame implements ActionListener {
 						+ clientes[codCliente][1] + "\nCidade " + clientes[codCliente][2] + "\n Estado: "
 						+ clientes[codCliente][3]);
 				JOptionPane.showMessageDialog(null, "Salvo com sucesso!\nCodigo: " + codCliente);
-				//laco = false;
 				codCliente++;
-			}
-		//}
-		
+			}		
 		nomeEnt.setText(null);
 		cpfEnt.setText(null);
 		cidadeEnt.setText(null);
@@ -241,11 +218,8 @@ public class Exercicio51 extends JFrame implements ActionListener {
 		painelAtualizar.repaint();
 		getContentPane().add(painelAtualizar);
 		painelAtualizar.setBounds(159, 103, 549, 215);
-		//painelAtualizar.setForeground(Color.WHITE);
-		//painelAtualizar.setBackground(cor01);
 		
 		codConsulta = Integer.parseInt(JOptionPane.showInputDialog("Insira o codigo do cliente a ser atualizado."));
-	//	int codCliente = codConsulta;
 		painelAtualizar.add(nome);
 		nome.setBounds(2, 8, 55, 10);
 		painelAtualizar.add(cpf);
@@ -270,10 +244,7 @@ public class Exercicio51 extends JFrame implements ActionListener {
 
 		painelAtualizar.add(button6);
 		button6.setBounds(430, 180, 80, 30);
-		//button6.setBackground(corSalvar);
-		//button6.setForeground(Color.white);
 		button6.addActionListener(this);
-		//int atualCod = codConsulta;
 		JLabel codigo = new JLabel("Codigo: " + codConsulta);
 		painelAtualizar.add(codigo);
 		codigo.setBounds(2, 190, 140, 20);
@@ -285,7 +256,6 @@ public class Exercicio51 extends JFrame implements ActionListener {
 		clientesReserva[codigoC][1] = cpfEnt.getText();
 		clientesReserva[codigoC][2] = cidadeEnt.getText();
 		clientesReserva[codigoC][3] = estadoEnt.getText();
-		//Aqui fazer o replace para o vetor principal
 		String.format(clientesReserva[codigoC][0],clientes[codigoC][0]);
 		String.format(clientesReserva[codigoC][0],clientes[codigoC][1]);
 		String.format(clientesReserva[codigoC][0],clientes[codigoC][2]);
@@ -303,53 +273,16 @@ public class Exercicio51 extends JFrame implements ActionListener {
 	}
 
 	public void Consultar() {
-		/**
-		 * Aqui vai ser inserido um joptionPane para solicitar o codigo a
-		 * consultar, motrar os dados atraves de JLABEL, remover o
-		 * desnecessario.
-		 */
 
 		getContentPane().add(painelConsulta);
 
 		painelConsulta.setBounds(159, 103, 549, 215);
-		//painelConsulta.setForeground(Color.WHITE);
-		//painelConsulta.setBackground(cor01);
 		JOptionPane.showMessageDialog(null, "Painel de Consulta");
-//		painelConsulta.add(nome);
-//		nome.setBounds(2, 8, 55, 10);
-//		painelConsulta.add(cpf);
-//		cpf.setBounds(2, 58, 30, 10);
-//		painelConsulta.add(cidade);
-//		cidade.setBounds(2, 108, 60, 10);
-//		painelConsulta.add(estado);
-//		estado.setBounds(2, 158, 50, 10);
-//		// textfields
-//		painelConsulta.add(nomeEnt);
-//		nomeEnt.setBounds(48, 5, 400, 20);
-//		nomeEnt.setText(null);
-//		painelConsulta.add(cpfEnt);
-//		cpfEnt.setBounds(48, 55, 200, 20);
-//		cpfEnt.setText(null);
-//		painelConsulta.add(cidadeEnt);
-//		cidadeEnt.setBounds(48, 105, 250, 20);
-//		cidadeEnt.setText(null);
-//		painelConsulta.add(estadoEnt);
-//		estadoEnt.setBounds(48, 155, 60, 20);
-//		estadoEnt.setText(null);
-//
-//		painelConsulta.add(buttonSalvar);
-//		buttonSalvar.setBounds(430, 180, 80, 30);
-//		buttonSalvar.setBackground(corSalvar);
-//		buttonSalvar.setForeground(Color.white);
-//		buttonSalvar.addActionListener(this);
-//		int atualCod = codCliente;
-//		JLabel codigo = new JLabel("Codigo: " + atualCod);
-//		painelConsulta.add(codigo);
-//		codigo.setBounds(2, 190, 140, 20);
+
 	}
 
 	public void Sair() {
-		// JOptionPane.showMessageDialog(null, "Saindo");
+		JOptionPane.showMessageDialog(null, "Saindo");
 		System.exit(0);
 	}
 	
