@@ -1,7 +1,11 @@
 /**
  * Codigo referente ao Exerc�cio 51 da lista de exercicios(os outros est�o apenas no OneDrive).
  * @author Caio Cesar D.
- * teste git suse
+ * - C.R.U.D
+ * C - Create
+ * R - Read
+ * U - Update
+ * D - Delete
  */
 package pacoteEx51;
 
@@ -10,6 +14,7 @@ import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -19,8 +24,6 @@ import javax.swing.JProgressBar;
 import javax.swing.JTextField;
 import javax.swing.UIManager;
 import javax.swing.UIManager.LookAndFeelInfo;
-
-import sun.awt.RepaintArea;
 
 public class Exercicio51 extends JFrame implements ActionListener {
 
@@ -51,11 +54,12 @@ public class Exercicio51 extends JFrame implements ActionListener {
 	JTextField cpfEnt = new JTextField(11);
 	JTextField cidadeEnt = new JTextField(30);
 	JTextField estadoEnt = new JTextField(2);
-	String[][] clientes = new String[100][4];
-	String[][] clientesReserva = new String[100][4];
+	String[][] Clientes = new String[100][4];
+	String[][] ClientesReserva = new String[100][4];
+	ImageIcon imgDeFundo = new ImageIcon(getClass().getResource("background.jpg"));
+	JLabel Background = new JLabel(imgDeFundo);
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == button1) {
-			
 			Cadastrar();
 		}
 		if (e.getSource() == button2) {
@@ -79,27 +83,24 @@ public class Exercicio51 extends JFrame implements ActionListener {
 	}
 
 	public Exercicio51() { // CLASSE CONSTRUTOR
-
+		setUndecorated(true);
+		Background.setBounds(0, 0, 900, 420);
 		setResizable(false);
 		getContentPane().setLayout(null);
 
 		// Botoes
 		getContentPane().add(button1);
-
 		button1.setToolTipText("Cadastrar um novo cliente");
 
 		getContentPane().add(button2);
-
 		button2.setToolTipText("Atualizar ou editar os dados de um cliente");
 
 		getContentPane().add(button3);
 
 		button3.setToolTipText("Excluir cadastros");
-
 		getContentPane().add(button4);
 
 		button4.setToolTipText("Consultar cadastros");
-
 		getContentPane().add(button5);
 
 		button5.setToolTipText("Encerrar aplicativo");
@@ -110,30 +111,33 @@ public class Exercicio51 extends JFrame implements ActionListener {
 		button4.addActionListener(this);
 		button5.addActionListener(this);
 
-		button1.setBounds(114, 66, 100, 25);
-		button1.setToolTipText("Opcao de cadastro.");
-		button2.setBounds(273, 66, 100, 25);
-		button3.setBounds(461, 66, 100, 25);
-		button4.setBounds(632, 66, 100, 25);
-		button5.setBounds(747, 322, 100, 35);
+		button1.setBounds(150, 66, 100, 30);
+		button2.setBounds(310, 66, 100, 30);
+		button3.setBounds(470, 66, 100, 30);
+		button4.setBounds(630, 66, 100, 30);
+		button5.setBounds(760, 322, 100, 35);
 
+		button1.setToolTipText("Opcao de cadastro.");
 		// Dados da Janela
-		JLabel lblSccSistema = new JLabel("SCC - SISTEMA DE CADASTRO DE CLIENTES");
-		lblSccSistema.setBounds(220, 12, 500, 24);
+		JLabel lblSccSistema = new JLabel("SCC - Sistema de Cadastro De Clientes");
+		lblSccSistema.setBounds(260, 12, 500, 24);
+
 		getContentPane().add(lblSccSistema);
 		lblSccSistema.setFont(fonteLabel);
+		lblSccSistema.setForeground(Color.white);
 
 		progresso.setToolTipText("Cadastros ja utilizados");
 		progresso.setStringPainted(true);
 		progresso.setBounds(220, 337, 382, 19);
 		getContentPane().add(progresso);
 
-		setTitle("Cadastro de clientes");
+		setTitle("Cadastro de Clientes");
 		setVisible(true);
 		setSize(900, 420);
 		setLocationRelativeTo(null);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 
+		add(Background);
 	}
 
 	public static void main(String[] args) {
@@ -153,11 +157,10 @@ public class Exercicio51 extends JFrame implements ActionListener {
 
 	// Funcoes
 	public void Cadastrar() {
-
+		
 		painelAtualizar.repaint();
 		getContentPane().add(painelCadastro);
 		painelCadastro.setBounds(159, 103, 549, 215);
-
 		painelCadastro.add(nome);
 		nome.setBounds(2, 13, 55, 10);
 		painelCadastro.add(cpf);
@@ -197,13 +200,13 @@ public class Exercicio51 extends JFrame implements ActionListener {
 				JOptionPane.showMessageDialog(null, "Limite atingido!");
 			} else {
 
-				clientes[codCliente][0] = nomeEnt.getText();
-				clientes[codCliente][1] = cpfEnt.getText();
-				clientes[codCliente][2] = cidadeEnt.getText();
-				clientes[codCliente][3] = estadoEnt.getText();
-				System.out.println("Codigo: " + codCliente + "\nNome " + clientes[codCliente][0] + "\nCpf "
-						+ clientes[codCliente][1] + "\nCidade " + clientes[codCliente][2] + "\n Estado: "
-						+ clientes[codCliente][3]);
+				Clientes[codCliente][0] = nomeEnt.getText();
+				Clientes[codCliente][1] = cpfEnt.getText();
+				Clientes[codCliente][2] = cidadeEnt.getText();
+				Clientes[codCliente][3] = estadoEnt.getText();
+				System.out.println("Codigo: " + codCliente + "\nNome " + Clientes[codCliente][0] + "\nCpf "
+						+ Clientes[codCliente][1] + "\nCidade " + Clientes[codCliente][2] + "\n Estado: "
+						+ Clientes[codCliente][3]);
 				JOptionPane.showMessageDialog(null, "Salvo com sucesso!\nCodigo: " + codCliente);
 				codCliente++;
 			}		
@@ -211,6 +214,7 @@ public class Exercicio51 extends JFrame implements ActionListener {
 		cpfEnt.setText(null);
 		cidadeEnt.setText(null);
 		estadoEnt.setText(null);
+		painelAtualizar.repaint();
 	}
 
 	public void Atualizar() {
@@ -230,17 +234,17 @@ public class Exercicio51 extends JFrame implements ActionListener {
 		estado.setBounds(2, 158, 50, 10);
 		// textfields
 		painelAtualizar.add(nomeEnt);
-		nomeEnt.setBounds(48, 5, 400, 20);
-		nomeEnt.setText(clientes[codConsulta][0]);
+		nomeEnt.setBounds(48, 5, 400, 28);
+		nomeEnt.setText(Clientes[codConsulta][0]);
 		painelAtualizar.add(cpfEnt);
-		cpfEnt.setBounds(48, 55, 200, 20);
-		cpfEnt.setText(clientes[codConsulta][1]);
+		cpfEnt.setBounds(48, 55, 200, 28);
+		cpfEnt.setText(Clientes[codConsulta][1]);
 		painelAtualizar.add(cidadeEnt);
-		cidadeEnt.setBounds(48, 105, 250, 20);
-		cidadeEnt.setText(clientes[codConsulta][2]);
+		cidadeEnt.setBounds(48, 105, 250, 28);
+		cidadeEnt.setText(Clientes[codConsulta][2]);
 		painelAtualizar.add(estadoEnt);
-		estadoEnt.setBounds(48, 155, 60, 20);
-		estadoEnt.setText(clientes[codConsulta][3]);
+		estadoEnt.setBounds(48, 155, 60, 28);
+		estadoEnt.setText(Clientes[codConsulta][3]);
 
 		painelAtualizar.add(button6);
 		button6.setBounds(430, 180, 80, 30);
@@ -252,19 +256,19 @@ public class Exercicio51 extends JFrame implements ActionListener {
 
 	public void atualizaDados(int codigoC){
 		
-		clientesReserva[codigoC][0] = nomeEnt.getText();
-		clientesReserva[codigoC][1] = cpfEnt.getText();
-		clientesReserva[codigoC][2] = cidadeEnt.getText();
-		clientesReserva[codigoC][3] = estadoEnt.getText();
-		String.format(clientesReserva[codigoC][0],clientes[codigoC][0]);
-		String.format(clientesReserva[codigoC][0],clientes[codigoC][1]);
-		String.format(clientesReserva[codigoC][0],clientes[codigoC][2]);
-		String.format(clientesReserva[codigoC][0],clientes[codigoC][3]);
+		ClientesReserva[codigoC][0] = nomeEnt.getText();
+		ClientesReserva[codigoC][1] = cpfEnt.getText();
+		ClientesReserva[codigoC][2] = cidadeEnt.getText();
+		ClientesReserva[codigoC][3] = estadoEnt.getText();
+		String.format(ClientesReserva[codigoC][0],Clientes[codigoC][0]);
+		String.format(ClientesReserva[codigoC][0],Clientes[codigoC][1]);
+		String.format(ClientesReserva[codigoC][0],Clientes[codigoC][2]);
+		String.format(ClientesReserva[codigoC][0],Clientes[codigoC][3]);
 		
 		JOptionPane.showMessageDialog(null, "Atualizado com sucesso!\nCodigo: " + codigoC);
-		System.out.println("Codigo: " + codCliente + "\nNome " + clientes[codCliente][0] + "\nCpf "
-				+ clientes[codCliente][1] + "\nCidade " + clientes[codCliente][2] + "\n Estado: "
-				+ clientes[codCliente][3]);
+		System.out.println("Codigo: " + codCliente + "\nNome " + Clientes[codCliente][0] + "\nCpf "
+				+ Clientes[codCliente][1] + "\nCidade " + Clientes[codCliente][2] + "\n Estado: "
+				+ Clientes[codCliente][3]);
 	} 
 	
 
@@ -282,7 +286,7 @@ public class Exercicio51 extends JFrame implements ActionListener {
 	}
 
 	public void Sair() {
-		JOptionPane.showMessageDialog(null, "Saindo");
+		//JOptionPane.showMessageDialog(null, "Saindo");
 		System.exit(0);
 	}
 	
